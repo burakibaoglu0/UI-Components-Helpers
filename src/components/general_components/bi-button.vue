@@ -1,0 +1,121 @@
+// Burak İbaoğlu Button Component
+
+<template>
+    <div :style=" `width:${width}; height:${height}; background-color:${bgc}; color:${textColor}; border-radius:${radius} ` " class="bi-button" @mouseenter="hoverActive" @mouseleave="hoverDeactive">
+        <div v-if="hasIcon" class="button-icon"></div>
+        <div class="button-title">{{btnText}}</div>
+    </div>
+</template>
+
+<script>
+    export default {
+
+        props: {
+            btnText: {
+                //inner text
+                type: String,
+                required: true
+            },
+            textColor: {
+                //text color
+                type: String,
+                default: "#000"
+            },
+            width: {
+                //button width
+                type: String,
+                required: true
+            },
+            height: {
+                //button height
+                type: String ,
+                required: true
+            },
+            bgc: {
+                // button background-color
+                type: String,
+                required: true,
+                default: '#fff'
+            },
+            isHoverable: {
+                // button hoverable
+                // if true, button will change color on hover
+                type: Boolean
+            },
+            hoverColor: {
+                // button hover color
+                // if isHoverable is true, this background-color will be used
+                type: String
+            },
+            hoverTextColor:{
+                // button hover text color
+                // if isHoverable is true, this text color will be used
+                type: String
+            },
+            isClickable: {
+                // button clickable
+                // if true, button
+                type: Boolean
+            },
+            hasIcon: {
+                // button icon
+                // if true, button will have icon
+                type: Boolean
+            },
+            radius:{
+                // button border-radius
+                type: String
+            }
+        },
+        mounted() {
+
+            const buttonElement = document.querySelector('.bi-button');
+
+            if(buttonElement.style.backgroundColor === 'rgb(255,255,255)'){
+                this.textColor = '#000';
+            }
+            else if(buttonElement.style.backgroundColor === 'rgb(0, 0, 0)'){
+                this.textColor = '#fff';
+            }
+
+        },
+        methods:{
+            hoverActive() {
+                //if button is hoverable
+                if (this.isHoverable) {
+                    //get element for styling
+                    const buttonElement = document.querySelector(".bi-button");
+
+                    //set button background-color
+                    if (this.hoverColor) {
+                        buttonElement.style.backgroundColor = this.hoverColor;
+                        buttonElement.style.color = this.hoverTextColor;
+                    }
+                }
+            },
+            hoverDeactive() {
+                //if button is hoverable
+                if (this.isHoverable) {
+                    //get element for styling
+                    const buttonElement = document.querySelector(".bi-button");
+
+                    //set button background-color
+                    if (this.bgc) {
+                        buttonElement.style.backgroundColor = this.bgc;
+                        buttonElement.style.color = this.textColor;
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+<style lang="scss">
+    @import "@/scss/index.scss";
+
+    .bi-button{
+        @include flex-container(row,center,center,nowrap);
+        cursor:pointer;
+        transition: all .1s ease-in-out;
+    }
+</style>

@@ -1,0 +1,80 @@
+@mixin all {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    user-select: none;
+}
+
+@mixin flex-container($fd, $ai, $jc, $fw) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: $fd;
+    align-items: $ai;
+    justify-content: $jc;
+    flex-wrap: $fw;
+}
+
+@mixin box-shadow($px: 0px, $px2:0px, $px3:0px, $px4:0px, $color: rgba(102, 102, 102, 1)) {
+    -webkit-box-shadow: $px $px2 $px3 $px4 $color;
+    -moz-box-shadow: $px $px2 $px3 $px4 $color;
+    box-shadow: $px $px2 $px3 $px4 $color;
+}
+
+@mixin scrollbar($display:false){
+    &::-webkit-scrollbar {
+        width: .4vmin;
+        height: .4vmin;        
+
+        @if $display{
+            display: none;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+@mixin text-align($align: left){
+    text-align: $align;
+    -webkit-text-align: $align;
+    -moz-text-align: $align;
+    -ms-text-align: $align;
+}
+
+
+@mixin border-radius($radius: 0){
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+
+
+@mixin transition($transition: all .3s ease-in-out){
+    transition: $transition;
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+}
+
+
+@mixin border($border: 1px ,$color:black){
+    border: $border solid $color;
+    -webkit-border: $border;
+    -moz-border: $border;
+    -ms-border: $border;
+}
