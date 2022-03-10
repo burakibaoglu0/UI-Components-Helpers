@@ -1,15 +1,26 @@
 // Burak İbaoğlu Button Component
 
 <template>
-    <div :style=" `width:${width}; height:${height}; background-color:${bgc}; color:${textColor}; border-radius:${radius} ` " class="bi-button" @mouseenter="hoverActive" @mouseleave="hoverDeactive">
-        <div v-if="hasIcon" class="button-icon"></div>
+    <div :id="btnText" :style=" `width:${width}; height:${height}; background-color:${bgc}; color:${textColor}; border-radius:${radius} ` " class="bi-button" @mouseenter="hoverActive" @mouseleave="hoverDeactive">
+        <div v-if="hasIcon" class="button-icon">
+            <BiIcon :color=" hoverControl ? `${hoverTextColor}` : `${textColor}` " :iconName="iconName"/>
+        </div>
         <div class="button-title">{{btnText}}</div>
     </div>
 </template>
 
 <script>
-    export default {
+    import BiIcon from "@/components/general_components/bi-icon.vue";
 
+    export default {
+        data(){
+            return{
+                hoverControl: false,
+            }
+        },
+        components: {
+            BiIcon
+        },
         props: {
             btnText: {
                 //inner text
@@ -62,6 +73,11 @@
                 // if true, button will have icon
                 type: Boolean
             },
+            iconName: {
+                // button icon name
+                // if hasIcon is true, this icon will be used
+                type: String
+            },
             radius:{
                 // button border-radius
                 type: String
@@ -84,7 +100,8 @@
                 //if button is hoverable
                 if (this.isHoverable) {
                     //get element for styling
-                    const buttonElement = document.querySelector(".bi-button");
+                    const buttonElement = document.getElementById(`${this.btnText}`);
+                    this.hoverControl = true;
 
                     //set button background-color
                     if (this.hoverColor) {
@@ -97,8 +114,8 @@
                 //if button is hoverable
                 if (this.isHoverable) {
                     //get element for styling
-                    const buttonElement = document.querySelector(".bi-button");
-
+                    const buttonElement = document.getElementById(`${this.btnText}`);
+                    this.hoverControl = false;
                     //set button background-color
                     if (this.bgc) {
                         buttonElement.style.backgroundColor = this.bgc;
@@ -114,8 +131,8 @@
     @import "@/scss/index.scss";
 
     .bi-button{
-        @include flex-container(row,center,center,nowrap);
+        @include flex-container(row,center,space-evenly,nowrap);
         cursor:pointer;
-        transition: all .1s ease-in-out;
+        @include transition(all .1s ease-in-out);
     }
 </style>

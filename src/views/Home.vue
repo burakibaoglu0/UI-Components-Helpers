@@ -1,9 +1,11 @@
 <template>
   <div class="home">
     <div class="navigate-buttons">
-      <bi-button @click.native="routeTo(example.route)" class="navigate-button" v-for="example in exampleList"
-        :key="example.title" bgc="#ebf2ff" :btnText="example.title" width="5vw" height="2vw" isHoverable
-        hoverColor="#192c4a" hoverTextColor="#fff" radius=".5vw"></bi-button>
+      <bi-button @mousedown="scaleButtons('down',example.title)" @mouseup="scaleButtons('up',example.title)"
+        :hasIcon="example.iconName ? true : false" :iconName="example.iconName" @click.native="routeTo(example.route)"
+        class="navigate-button" v-for="example in exampleList" :key="example.title" bgc="#ebf2ff"
+        :btnText="example.title" width="5vw" height="2vw" isHoverable hoverColor="#192c4a" hoverTextColor="#fff"
+        radius=".5vw"></bi-button>
     </div>
     <div class="about">
       <img class="about-img" src="@/assets/images/coder.svg" alt="">
@@ -37,6 +39,16 @@
       return {
         exampleList
       }
+    },
+    methods: {
+      scaleButtons(direction, id) {
+        const button = document.getElementById(id);
+        if (direction === 'down') {
+          button.style.transform = 'scale(0.2)';
+        } else {
+          button.style.transform = 'scale(1)';
+        }
+      },
     }
   }
 </script>
@@ -58,6 +70,7 @@
       border: .1vmin solid #ebf2ff;
       border-radius: .5vmin;
       flex: 1 0 1px;
+      gap: 3vw;
 
       .navigate-button {
         font-size: .8vw;

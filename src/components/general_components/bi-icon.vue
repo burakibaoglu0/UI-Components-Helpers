@@ -1,4 +1,4 @@
-//Burak İbaoğlu Icon Component
+// Burak İbaoğlu Icon Component
 
 <template>
     <div :style="iconStyle" :class="iconClass"></div>
@@ -20,7 +20,7 @@
             },
             size: {
                 type: String,
-                default: '24px'
+                default: '1vw'
             }
         },
         computed: {
@@ -51,6 +51,6 @@
         -webkit-mask-size: cover;
         mask-size: cover;
         background-color: var(--color);
-        @include transition(all ease-in-out .2s); 
+        @include transition(all ease-in-out .1s); 
     }
 </style>
