@@ -1,4 +1,11 @@
-export const exampleList = [
+interface mainItems {
+    title: string;
+    route: string;
+    iconName: string;
+}
+
+
+export const exampleList: Array<mainItems> = [
     {
         title: 'Buttons',
         route: '/buttons',
