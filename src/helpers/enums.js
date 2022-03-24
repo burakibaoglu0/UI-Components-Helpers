@@ -8,5 +8,10 @@ export const exampleList = [
         title: 'Icons',
         route: '/icons',
         iconName: 'hammer-screwdriver'
+    },
+    {
+        title: 'Alerts',
+        route: '/alerts',
+        iconName: 'alert-circle'
     }
 ];
