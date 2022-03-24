@@ -1,12 +1,13 @@
 <template>
   <div class="home">
-    <div class="navigate-buttons">
-      <bi-button @mousedown="scaleButtons('down',example.title)" @mouseup="scaleButtons('up',example.title)"
+    <main-card>
+      <bi-button @mousedown.native="scaleButtons('down',example.title)" @mouseup.native="scaleButtons('up',example.title)"
+        @mouseleave.native="scaleButtons('up',example.title)"
         :hasIcon="example.iconName ? true : false" :iconName="example.iconName" @click.native="routeTo(example.route)"
         class="navigate-button" v-for="example in exampleList" :key="example.title" bgc="#ebf2ff"
         :btnText="example.title" width="5vw" height="2vw" isHoverable hoverColor="#192c4a" hoverTextColor="#fff"
-        radius=".5vw"></bi-button>
-    </div>
+        radius=".5vw" :id="example.title"></bi-button>
+    </main-card>
     <div class="about">
       <img class="about-img" src="@/assets/images/coder.svg" alt="">
       <div class="about-text">Welcome to my playground! I publish components, utilities and more that I have developed
@@ -22,6 +23,7 @@
 
 <script>
   import biButton from "@/components/general_components/bi-button.vue";
+  import mainCard from "@/components/page_components/mainCard.vue";
   import {
     exampleList
   } from "@/helpers/enums";
@@ -33,22 +35,13 @@
     name: 'Home',
     mixins: [utilityMixin],
     components: {
-      biButton
+      biButton,
+      mainCard
     },
     data() {
       return {
         exampleList
       }
-    },
-    methods: {
-      scaleButtons(direction, id) {
-        const button = document.getElementById(id);
-        if (direction === 'down') {
-          button.style.transform = 'scale(0.2)';
-        } else {
-          button.style.transform = 'scale(1)';
-        }
-      },
     }
   }
 </script>
@@ -62,7 +55,7 @@
     height: 100%;
     padding: 1% 25%;
 
-    .navigate-buttons {
+    .card-container {
       @include flex-container(row, flex-start, flex-start, wrap);
       width: 100%;
       height: 100%;
@@ -71,10 +64,6 @@
       border-radius: .5vmin;
       flex: 1 0 1px;
       gap: 3vw;
-
-      .navigate-button {
-        font-size: .8vw;
-      }
     }
 
     .about {

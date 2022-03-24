@@ -51,6 +51,6 @@
         -webkit-mask-size: cover;
         mask-size: cover;
         background-color: var(--color);
-        @include transition(all ease-in-out .1s); 
+        @include transition(all ease-in-out .2s); 
     }
 </style>

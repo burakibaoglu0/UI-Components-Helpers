@@ -1,7 +1,7 @@
 // Burak İbaoğlu Button Component
 
 <template>
-    <div :id="btnText" :style=" `width:${width}; height:${height}; background-color:${bgc}; color:${textColor}; border-radius:${radius} ` " class="bi-button" @mouseenter="hoverActive" @mouseleave="hoverDeactive">
+    <div :id="btnText" :style="variables" class="bi-button" @mouseenter="hoverActive" @mouseleave="hoverDeactive">
         <div v-if="hasIcon" class="button-icon">
             <BiIcon :color=" hoverControl ? `${hoverTextColor}` : `${textColor}` " :iconName="iconName"/>
         </div>
@@ -83,18 +83,6 @@
                 type: String
             }
         },
-        mounted() {
-
-            const buttonElement = document.querySelector('.bi-button');
-
-            if(buttonElement.style.backgroundColor === 'rgb(255,255,255)'){
-                this.textColor = '#000';
-            }
-            else if(buttonElement.style.backgroundColor === 'rgb(0, 0, 0)'){
-                this.textColor = '#fff';
-            }
-
-        },
         methods:{
             hoverActive() {
                 //if button is hoverable
@@ -123,6 +111,17 @@
                     }
                 }
             }
+        },
+        computed:{
+            variables(){
+                return {
+                    '--btn-width': this.width,
+                    '--btn-height': this.height,
+                    '--btn-backgroundColor': this.bgc,
+                    '--btn-text-color': this.textColor,
+                    '--btn--borderRadius': this.radius
+                }
+            }
         }
     }
 </script>
@@ -132,7 +131,13 @@
 
     .bi-button{
         @include flex-container(row,center,space-evenly,nowrap);
+        width: var(--btn-width);
+        height: var(--btn-height);
+        background-color: var(--btn-backgroundColor);
+        color: var(--btn-text-color);
+        border-radius: var(--btn--borderRadius);
         cursor:pointer;
-        @include transition(all .1s ease-in-out);
+        @include transition(all .2s ease-in-out);
+        font-size: .8vw;
     }
 </style>
