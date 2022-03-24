@@ -1,7 +1,8 @@
 interface mainItems {
     title: string;
     route: string;
-    iconName: string;
+    iconName?: string;
+    [key: string]: any;
 }
 
 
@@ -20,5 +21,10 @@ export const exampleList: Array<mainItems> = [
         title: 'Alerts',
         route: '/alerts',
         iconName: 'alert-circle'
+    },
+    {
+        title: 'Slider',
+        route: '/slider',
+        iconName: 'gesture-swipe-horizontal'
     }
 ];

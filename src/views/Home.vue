@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import biButton from "@/components/general_components/bi-button.vue";
+  import biButton from "@/components/generic_components/bi-button.vue";
   import mainCard from "@/components/page_components/mainCard.vue";
   import {
     exampleList

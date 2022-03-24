@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import BiIcon from "@/components/general_components/bi-icon.vue";
+    import BiIcon from "./bi-icon.vue";
 
     export default {
         data(){
