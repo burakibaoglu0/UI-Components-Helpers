@@ -33,15 +33,16 @@
                 type: Object,
                 required: true,
                 default: {
-                    message: '',
-                    type: '',
-                    icon: '',
-                    hasIcon: false,
+                    type: "success",
+                    message: "Success!",
+                    hasIcon: true,
+                    iconName: "checkbox-marked-circle-outline",
+                    bordered: true
                 }
             }
         },
         methods: {
-            timeOutFunc(alert){
+            timeOutFunc(){
                 setTimeout(() => {
                     this.alertList.splice(this.alertList.length-1,1);
                 }, 3e3);
