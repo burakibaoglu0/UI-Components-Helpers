@@ -27,6 +27,8 @@ In this project, I am coding my vue components, helper javascript functions, scs
 
 * Javascript
 
+* Typescript
+
 * Vue.js
 
 * SASS/SCSS
