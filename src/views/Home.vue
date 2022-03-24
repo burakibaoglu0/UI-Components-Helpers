@@ -30,7 +30,6 @@
   import {
     utilityMixin
   } from "@/helpers/mixins";
-
   export default {
     name: 'Home',
     mixins: [utilityMixin],
@@ -48,13 +47,11 @@
 
 <style lang="scss">
   @import "@/scss/index.scss";
-
   .home {
     @include flex-container(column, stretch, flex-start, nowrap);
     width: 100%;
     height: 100%;
     padding: 1% 25%;
-
     .card-container {
       @include flex-container(row, flex-start, flex-start, wrap);
       width: 100%;
@@ -65,7 +62,6 @@
       flex: 1 0 1px;
       gap: 3vw;
     }
-
     .about {
       @include flex-container(column, stretch, flex-start, nowrap);
       position: fixed;
@@ -75,18 +71,15 @@
       flex: 0 0 auto;
       gap: 1vmin;
       width: 20vw;
-
       .about-img {
         width: 20vw;
       }
-
       .about-text {
         @include flex-container(row, center, flex-start, nowrap);
         font-size: .9vw;
         padding: 0 .5vw;
       }
     }
-
     .ideas {
       position: fixed;
       right: 2px;
