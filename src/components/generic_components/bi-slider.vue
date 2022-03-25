@@ -6,8 +6,10 @@
       <div class="slide-left-icon" @click="scrollElement('left')">
         <BiIcon iconName="chevron-left" />
       </div>
-      <div id="image-slider" class="slide-container">
-        <img class="slide-image" v-for="image in imageArray" :key="image.src" :src="image.src">
+      <div class="slide-container">
+        <div id="wrapper" class="slide-wrapper">
+          <img class="slide-image" v-for="(image,i) in imageArray" :key="image.src + i" :src="image.src">
+        </div>
       </div>
       <div class="slide-right-icon" @click="scrollElement('right')">
         <BiIcon iconName="chevron-right" />
@@ -32,6 +34,11 @@
   import BiIcon from './bi-icon.vue';
 
   export default Vue.extend({
+    data() {
+      return {
+        slideLeft: 0
+      }
+    },
     props: {
       forImages: {
         type: Boolean,
@@ -53,19 +60,14 @@
     },
     methods: {
       scrollElement(direction: string) {
-        const slideContainer = document.getElementById('image-slider') as HTMLElement;
-        let scrollCompleted = 0;
-        let slideVar = setInterval(function () {
-          if (direction == 'left') {
-            slideContainer.scrollLeft -= 100;
-          } else {
-            slideContainer.scrollLeft += 100;
-          }
-          scrollCompleted += 20;
-          if (scrollCompleted >= 100) {
-            window.clearInterval(slideVar);
-          }
-        }, 50);
+        const slideContainer = document.getElementById('wrapper') as HTMLElement;
+        if (this.slideLeft >= (this.imageArray.length - 2) * -100 && direction === 'right') {
+          this.slideLeft -= 100;
+          slideContainer.style.left = this.slideLeft + 'vw';
+        } else if (this.slideLeft < 0 && direction === 'left') {
+          this.slideLeft += 100;
+          slideContainer.style.left = this.slideLeft + 'vw';
+        }
       }
     }
   })
@@ -94,19 +96,34 @@
     }
 
     .slide-container {
-      @include flex-container(row, center, flex-start, nowrap);
+      @include flex-container(row, stretch, flex-start, nowrap);
       flex: 1 0 1px;
-      width: 100%;
-      gap: 1vw;
+      width: 100vw;
+      height: 100vh;
       overflow-x: hidden;
-      transition: all 0.5s ease;
+      position: relative;
 
-      .slide-image {
-        flex: 0 0 auto;
-        width: 25vw;
-        height: 25vw;
-        object-fit: cover;
-        transform: 0.5s ease-in-out
+      .slide-wrapper {
+        @include flex-container(row, center, center, nowrap);
+        flex: 1 0 1px;
+        transition: all 0.5s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        .slide-image {
+          flex: 1 0 1px;
+          width: 100vw;
+          height: 100vh;
+          object-fit: scale-down;
+          transform: 0.5s ease-in-out;
+          -webkit-user-drag: none;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          pointer-events: none;
+        }
       }
     }
   }
