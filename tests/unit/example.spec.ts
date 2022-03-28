@@ -1,13 +1,13 @@
 import { expect } from 'chai'
 import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import BiButton from '@/components/generic_components/bi-button.vue'
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
+describe('bi-button message test', () => {
+  it('renders props.btnText when passed', async () => {
+    const buttonText = 'bi-button message test'
+    const wrapper = shallowMount(BiButton, {
+      propsData: { btnText : buttonText }
     })
-    expect(wrapper.text()).to.include(msg)
+    expect(wrapper.text()).to.include(buttonText);
   })
 })

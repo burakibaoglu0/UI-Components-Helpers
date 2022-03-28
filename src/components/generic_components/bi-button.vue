@@ -35,17 +35,17 @@
             width: {
                 //button width
                 type: String,
-                required: true
+                //required: true
             },
             height: {
                 //button height
                 type: String ,
-                required: true
+                //required: true
             },
             bgc: {
                 // button background-color
                 type: String,
-                required: true,
+                //required: true,
                 default: '#fff'
             },
             isHoverable: {
