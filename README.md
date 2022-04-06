@@ -37,13 +37,13 @@ In this project, I am coding my vue components, helper javascript functions, scs
 Clone the project
 
 ```bash
-  git clone https://github.com/burakibaoglu0/My-Playground.git
+  git clone https://github.com/burakibaoglu0/UI-Components-Helpers.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd UI-Components-Helpers
 ```
 
 Install the necessary packages
