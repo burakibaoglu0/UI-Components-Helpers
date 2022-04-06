@@ -1,5 +1,5 @@
 
-# My-Playground
+# UI Components / Helpers
 
 In this project, I am coding my vue components, helper javascript functions, scss classes, mixins and similar helpers that I use in my own projects.
 
